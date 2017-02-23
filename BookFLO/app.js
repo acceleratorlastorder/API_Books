@@ -116,7 +116,7 @@ myApp.controller('Controller', ['$scope', '$http', "$q", function($scope, $http,
             method: 'GET',
             url: jsonurl
         }).then(function successCallback(response, data, status) {
-           console.log("response = ", response);
+            console.log("response = ", response);
             if (response.data.items == undefined) {
                 console.log("book undefined");
                 return document.getElementById("result").innerHTML = "<h2>Désolés nous n'avons pas pu trouver de livre correspondant à votre recherche</h2>";
@@ -160,7 +160,8 @@ myApp.controller('Controller', ['$scope', '$http', "$q", function($scope, $http,
 
             books[i].volumeInfo.authors == undefined ? (errocounter++, auteur = "N/C") : auteur = books[i].volumeInfo.authors[0];
 
-            books[i].volumeInfo.industryIdentifiers[0].identifier == undefined ? (errocounter++, identifieur = "N/C") : identifieur = books[i].volumeInfo.industryIdentifiers[0].identifier;
+            books[i].volumeInfo.industryIdentifiers == undefined ? (errocounter++, identifieur = "N/C") :   books[i].volumeInfo.industryIdentifiers[0].identifier == undefined ? (errocounter++, identifieur = "N/C") : identifieur = books[i].volumeInfo.industryIdentifiers[0].identifier;
+
 
             books[i].volumeInfo.publisher == undefined ? (errocounter++, editeur = "N/C") : editeur = books[i].volumeInfo.publisher;
 
