@@ -15,13 +15,12 @@ var myApp = angular.module('bookflo', []).config(function($sceDelegateProvider) 
 });
 
 myApp.controller('Controller', ['$scope', '$http', "$q", function($scope, $http, $q, $state) {
-    console.log("salut");
     let button = document.getElementById("button");
     let inputvalue = document.getElementById("search").value;
-    let resultnumbers = 20;
-    let args = ""; // arguments in case we want a more specific search
     let maxresultsinput = document.getElementById("maxresults").selectedIndex;
     let maxresultsinputvalue = document.getElementsByTagName("option")[maxresultsinput].value
+    let resultnumbers = maxresultsinputvalue;
+    let args = ""; // arguments in case we want a more specific search
 
     var titlecheckbox = document.querySelector('input[name="titlecheckbox"]');
     let authorcheckbox = document.querySelector('input[name="authorcheckbox"]');
@@ -39,7 +38,6 @@ myApp.controller('Controller', ['$scope', '$http', "$q", function($scope, $http,
     $scope.results = [];
 
     function checkboxlistener() {
-        console.log(maxresultsinputvalue);
         checkboxsum = 0;
         if (titlecheckbox.checked == true) {
             checkboxsum++;
@@ -56,8 +54,10 @@ myApp.controller('Controller', ['$scope', '$http', "$q", function($scope, $http,
         if (checkboxsum == 3) {
             checkboxall.checked = true;
             checkboxsum = 3
-        } else if (checkboxall.checked == false) {
-            allchecked = 0;
+        } else if (checkboxsum < 3) {
+            checkboxall.checked = false
+        } else if (checkboxall.checked == true) {
+            checkboxsum = 3;
         }
     }
 
@@ -69,7 +69,10 @@ myApp.controller('Controller', ['$scope', '$http', "$q", function($scope, $http,
 
     function urlmaker() {
         inputvalue = document.getElementById("search").value;
+<<<<<<< HEAD
         console.log("inputvalue = ", inputvalue);
+=======
+>>>>>>> d945996a54e98b67f44168b250e0133d38681a20
         maxresultsinput = document.getElementById("maxresults").selectedIndex;
         maxresultsinputvalue = document.getElementsByTagName("option")[maxresultsinput].value
         resultnumbers = maxresultsinputvalue;
@@ -83,8 +86,6 @@ myApp.controller('Controller', ['$scope', '$http', "$q", function($scope, $http,
         if (publisher.checked == true) {
             args += "+inpublisher:" + inputvalue;
         }
-        console.log(args);
-
 
         let key = "&key=AIzaSyCsQR7F04zJVfUL4trC4XFh7tEwLwjt4DY" // google api key for monitoring
         let jsonurl = "https://www.googleapis.com/books/v1/volumes?q="; // url base
@@ -93,29 +94,22 @@ myApp.controller('Controller', ['$scope', '$http', "$q", function($scope, $http,
         let maxresult = "&maxResults=" + resultnumbers;
 
 
-
-        console.log("checkbox titre :", titlecheckbox);
-
-
         newarray = inputvalue.split(" ");
-        console.log("newarray :", newarray);
 
         formatedstring = newarray.join('%20'); //join all index values in a string and put a space char between them
-        console.log("formatedstring :", formatedstring);
 
-        jsonurl += formatedstring + args + maxresult + key;
-        console.log("json url write by the function :", jsonurl); // url done
+        jsonurl += formatedstring + args + maxresult + key; // url done
 
         getjson(jsonurl); //sending the formatted url to the getjson function
 
     };
 
     function getjson(jsonurl) {
-        console.log("getjson");
         $http({
             method: 'GET',
             url: jsonurl
         }).then(function successCallback(response, data, status) {
+<<<<<<< HEAD
             console.log("response = ", response);
             if (response.data.items == undefined) {
                 console.log("book undefined");
@@ -139,6 +133,11 @@ myApp.controller('Controller', ['$scope', '$http', "$q", function($scope, $http,
                           console.log("categories = ", books[0].volumeInfo.categories[0]); */
                 creatinglist();
             }
+=======
+            books = response.data.items;
+            args = "";
+            creatinglist();
+>>>>>>> d945996a54e98b67f44168b250e0133d38681a20
         }, function errorCallback(response) {
             args = "";
             console.log("error can't get the JSON file from the server", response);
@@ -150,7 +149,6 @@ myApp.controller('Controller', ['$scope', '$http', "$q", function($scope, $http,
     function creatinglist() {
         $scope.results = []; // array reset
         let image, titre, auteur, identifieur, editeur, date, apercu, genre;
-        console.log("making an array with info we needs");
         for (var i = 0; i < books.length; i++) {
             let errocounter = 0;
 
@@ -171,7 +169,6 @@ myApp.controller('Controller', ['$scope', '$http', "$q", function($scope, $http,
 
             books[i].volumeInfo.categories == undefined ? (errocounter++, genre = "N/C") : genre = books[i].volumeInfo.categories[0];
 
-            console.log("check done", errocounter, "error");
 
 
             $scope.results.push({
@@ -186,8 +183,9 @@ myApp.controller('Controller', ['$scope', '$http', "$q", function($scope, $http,
             })
 
 
-            console.log("results :", $scope.results, i);
         }
+
+        document.getElementById("table").style.display = "block";
         /*    drawtheresult(); not needed for now maybe in a future implementation  */
 
     };
