@@ -69,10 +69,6 @@ myApp.controller('Controller', ['$scope', '$http', "$q", function($scope, $http,
 
     function urlmaker() {
         inputvalue = document.getElementById("search").value;
-<<<<<<< HEAD
-        console.log("inputvalue = ", inputvalue);
-=======
->>>>>>> d945996a54e98b67f44168b250e0133d38681a20
         maxresultsinput = document.getElementById("maxresults").selectedIndex;
         maxresultsinputvalue = document.getElementsByTagName("option")[maxresultsinput].value
         resultnumbers = maxresultsinputvalue;
@@ -93,7 +89,6 @@ myApp.controller('Controller', ['$scope', '$http', "$q", function($scope, $http,
         let formatedstring = "";
         let maxresult = "&maxResults=" + resultnumbers;
 
-
         newarray = inputvalue.split(" ");
 
         formatedstring = newarray.join('%20'); //join all index values in a string and put a space char between them
@@ -101,7 +96,6 @@ myApp.controller('Controller', ['$scope', '$http', "$q", function($scope, $http,
         jsonurl += formatedstring + args + maxresult + key; // url done
 
         getjson(jsonurl); //sending the formatted url to the getjson function
-
     };
 
     function getjson(jsonurl) {
@@ -109,7 +103,6 @@ myApp.controller('Controller', ['$scope', '$http', "$q", function($scope, $http,
             method: 'GET',
             url: jsonurl
         }).then(function successCallback(response, data, status) {
-<<<<<<< HEAD
             console.log("response = ", response);
             if (response.data.items == undefined) {
                 console.log("book undefined");
@@ -133,11 +126,6 @@ myApp.controller('Controller', ['$scope', '$http', "$q", function($scope, $http,
                           console.log("categories = ", books[0].volumeInfo.categories[0]); */
                 creatinglist();
             }
-=======
-            books = response.data.items;
-            args = "";
-            creatinglist();
->>>>>>> d945996a54e98b67f44168b250e0133d38681a20
         }, function errorCallback(response) {
             args = "";
             console.log("error can't get the JSON file from the server", response);
