@@ -2,60 +2,61 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <title>Book FLO</title>
-  <link rel="stylesheet" href="style.css" media="screen" title="no title">
-  <link rel="shortcut icon" href="img/books.ico">
+    <meta charset="utf-8">
+    <title>Book FLO</title>
+    <link rel="stylesheet" href="style.css" media="screen" title="no title">
+    <link rel="shortcut icon" href="img/books.ico">
 </head>
 
 <body ng-app="bookflo" ng-controller="Controller">
-  <div class="container">
-    <header>
-      <h1>Book FLO</h1>
-    </header>
-    <nav>
-      <form onsubmit="return false;" name="myform" class="" action="" method="get">
-        <input id="search" type="search" placeholder="Mots-clés" name="name" value=""></input>
-        <button id="button" href="" type="submit" name="button">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
-        <details closed class="advancedsearch" value>
-          <summary>recherche avancée</summary>
-          <div class="searchby">
-            <span><label>Titre:<input id="titlecheckbox" name="titlecheckbox" type="checkbox"/></label></span><br>
-            <span><label>Auteur:<input id="authorcheckbox" name="authorcheckbox" type="checkbox"/></label></span><br>
-            <span><label>Editeur:<input id="editorcheckbox" name="publisher" type="checkbox"/></label></span><br>
-            <span><label>Tous:<input id="allcheckbox" name="checkboxall" type="checkbox"/></label></span><br>
-          </div>
-          <div class="maxresult">
-            <span>Résultats par page :</span>
-            <select id="maxresults">
+    <div class="container">
+
+        <header>
+            <h1>Book FLO</h1>
+        </header>
+        <nav>
+            <form onsubmit="return false;" name="myform" class="" action="" method="get">
+
+                <details closed class="advancedsearch" value>
+                    <summary>recherche avancée</summary>
+                    <div class="searchby">
+                        <span><label>Titre:<input id="titlecheckbox" name="titlecheckbox" type="checkbox"/></label></span><br>
+                        <span><label>Auteur:<input id="authorcheckbox" name="authorcheckbox" type="checkbox"/></label></span><br>
+                        <span><label>Editeur:<input id="editorcheckbox" name="publisher" type="checkbox"/></label></span><br>
+                        <span><label>Tous:<input id="allcheckbox" name="checkboxall" type="checkbox"/></label></span><br>
+                    </div>
+                    <div class="maxresult">
+                        <span>Résultats par page :</span>
+                        <select id="maxresults">
                          <option value="5">5</option>
                          <option value="10">10</option>
                          <option value="15">15</option>
                          <option value="20">20</option>
                          <option value="30">30</option>
                          <option value="40">40</option>
-            </select>
-          </div>
-        </details>
-        <nav>
-          <input id="search" type="search" placeholder="Mots-clés" name="name" value="" />
-          <button id="button" href="" type="submit" name="button">Recherche</button>
-        </nav>
-      </form>
-    </nav>
-    <main>
-      <div id="result">
-        <div id="table" ng-include="'partials/table.html'"></div>
-      </div>
-    </main>
+                       </select>
+                    </div>
+                </details>
+                <nav>
+                  <input id="search" type="search" placeholder="Mots-clés" name="name" value=""></input>
+                  <button id="button" href="" type="submit" name="button">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                </nav>
 
-    <footer>
-      <p class="credits"><sup>&copy&nbsp;</sup><time>2017</time> Simplonmars &nbsp;|&nbsp; Projet Data Plug &nbsp;|&nbsp; Groupe: Fodil Azli + Okba Hamidi + Linda Khelifi &nbsp;</p>
-    </footer>
-  </div>
-  <script src="angular.js" charset="utf-8"></script>
-  <script src="angular-route.js" charset="utf-8"></script>
-  <script type="application/javascript" src="app.js" charset="utf-8"></script>
+            </form>
+        </nav>
+        <main>
+            <div id="result">
+                <div id="table" ng-include="'partials/table.html'"></div>
+            </div>
+        </main>
+
+        <footer>
+            <p class="credits"><sup>&copy&nbsp;</sup><time>2017</time> Simplonmars &nbsp;|&nbsp; Projet Data Plug &nbsp;|&nbsp; Groupe: Fodil Azli + Okba Hamidi + Linda Khelifi &nbsp;</p>
+        </footer>
+    </div>
+    <script src="angular.js" charset="utf-8"></script>
+    <script src="angular-route.js" charset="utf-8"></script>
+    <script type="application/javascript" src="app.js" charset="utf-8"></script>
 </body>
 
 </html>
